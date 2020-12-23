@@ -5,5 +5,6 @@ namespace WeatherForecast.Hexagon.DriverPorts
     public interface IWeatherForecastPort
     {
         Task<string> GetTodayWeather();
+        void SendWeatherStatusTo(string @from);
     }
 }

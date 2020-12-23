@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using WeatherForeCast.ConsoleAdapter;
 using WeatherForecast.Hexagon;
 using WeatherForecast.Hexagon.DrivenPorts;
 using WeatherForecast.Hexagon.DriverPorts;
 using WeatherForecast.Hexagon.Exceptions;
+using WeatherForecast.SmsAdapter;
 using Xunit;
 
 namespace WeatherForecast.Tests
@@ -11,47 +14,108 @@ namespace WeatherForecast.Tests
     {
         //Console Adapter
         //Sms Adapter
-        //Weather Services (Adapters)
-
-
+        //Weather Inquiry Services (Adapters)
 
         //Convert Fahrenheit Celsius
+
         //Sms Driver Adapter 
         //Sms Driven Adapter
+
+
+        [Fact]
+        public async Task TestWeatherReaderServiceIsNull()
+        {
+            IWeatherReaderPort nullWeatherReaderPort = null;
+
+            //Hexagon
+            var result = Assert.Throws<ArgumentNullException>(() => CreateForecastPort(nullWeatherReaderPort));
+
+            Assert.True(result.Message.Contains("IWeatherReaderPort"));
+        }
 
         [Fact]
         public async Task TestWeatherReaderServiceIsUnavailable()
         {
-            IWeatherReaderPort weatherReaderPort = default;
-            //Hexagon
-            IWeatherForecastPort sut = new WeatherForecastService(weatherReaderPort);
+            //Driven port 
+            //Right side
+            IWeatherReaderPort weatherReaderPort = WeatherReaderPortStub.WhichUnavailable();
 
-            var result =
-                await Assert.ThrowsAsync<WeatherReaderServiceUnavailableException>(() => sut.GetTodayWeather());
+            //Hexagon
+            IWeatherForecastPort sut = CreateForecastPort(weatherReaderPort);
+            var result = await Assert.ThrowsAnyAsync<WeatherReaderServiceUnavailableException>(() => sut.GetTodayWeather());
+
             Assert.Equal("سرویس در دسترس نمی باشد", result.Message);
         }
 
+        [Theory]
+        [InlineData(68, 20)]
+        [InlineData(75.2, 24)]
+        [InlineData(120.02, 48)]
+        public async Task TestConvertFahrenheitToCelsius(double fahrenheit, int expectedResult)
+        {
+            //Data Driven Test
+            //Scenario Outline
+            //Parameterized Tests
+            ITempratureConverter sut = CreateTempratureConverter();
+
+            var result = sut.ConvertFahrenheitToCelsius(fahrenheit);
+            Assert.Equal(expectedResult, result);
+        }
+
+
         [Fact]
-        public async Task TestConvertFahrenheitToCelsius()
+        public void TestShowWeatherResultToConsoleAdapter()
         {
-            //Driven port 
-            //Right side
-            IWeatherReaderPort weatherReaderPort = new WeatherReaderPortTestSpecific();
-            
             //Hexagon
-            IWeatherForecastPort sut = new WeatherForecastService(weatherReaderPort);
-            var result = await sut.GetTodayWeather();
+            var todayWeahterInFahrenheit = 68;
+            var formatedWeatherStatus = "دمای هوای امروز 20 درجه است";
 
-            Assert.Equal("دمای هوای امروز 20 درجه است", result);
+            IWeatherForecastPort weatherReaderPort = CreateForecastPort(WeatherReaderPortStub.WhichReturn(todayWeahterInFahrenheit));
+
+            IConsoleWriter consoleWriter = new MockConsoleWriter();
+            ((MockConsoleWriter)consoleWriter).Setup(expectedMessage: formatedWeatherStatus);
+
+            //Driver Side
+            IConsoleAdapter sut = new ConsoleAdapter(consoleWriter, port: weatherReaderPort);
+
+            sut.Run();
+
+            //Assert
+            ((MockConsoleWriter)consoleWriter).Verify();
         }
 
-    }
 
-    public  class WeatherReaderPortTestSpecific: IWeatherReaderPort
-    {
-        public int GetWeather()
+        //Current
+        [Fact]
+        public void TestSendWeatherStatusVisSms()
         {
-            return 68;
+            var todayWeatherInFahrenheit = 68;
+            var formatedWeatherStatus = "دمای هوای امروز 20 درجه است";
+
+            var message = "1";
+            var number = "09123456789";
+
+            MockSmsSenderPort mockSmsAdapter = new MockSmsSenderPort();
+            mockSmsAdapter.Setup(expectedNumber: number, expectedMessage: formatedWeatherStatus);
+
+            //hexagon
+            IWeatherForecastPort weatherReaderPort = CreateForecastPort(WeatherReaderPortStub.WhichReturn(todayWeatherInFahrenheit), mockSmsAdapter);
+
+            ISmsAdapter smsAdapter = new MockSmsAdapter(port: weatherReaderPort);
+
+            smsAdapter.Run();
+
+            smsAdapter.OnReceivingSms(@from: number, message: message);
+
+            mockSmsAdapter.Verify();
         }
+
+        //Factory Method
+        private IWeatherForecastPort CreateForecastPort(IWeatherReaderPort weatherReaderPort, ISmsSenderPort smsSenderPort = null)
+        {
+            return new WeatherForecastService(weatherReaderPort, CreateTempratureConverter(), smsSenderPort);
+        }
+
+        private ITempratureConverter CreateTempratureConverter() => new TempratureConverter();
     }
 }

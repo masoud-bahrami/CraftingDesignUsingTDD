@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using WeatherForecast.Hexagon.DrivenPorts;
 using WeatherForecast.Hexagon.DriverPorts;
 using WeatherForecast.Hexagon.Exceptions;
@@ -8,25 +9,53 @@ namespace WeatherForecast.Hexagon
     public class WeatherForecastService : IWeatherForecastPort
     {
         private readonly IWeatherReaderPort _weatherForecastPort;
+        
+        //Interface >> abstract
+        //Program to abstract> program to interface
 
-        public WeatherForecastService(IWeatherReaderPort weatherForecastPort)
+        private readonly ITempratureConverter _tempratureConverter;
+        private readonly   ISmsSenderPort _smsSenderPort;
+
+        public WeatherForecastService(IWeatherReaderPort weatherForecastPort, ITempratureConverter tempretureConverter, ISmsSenderPort smsSenderPort)
         {
+            //Fail fast
+            //Guard Clouse
+            if (weatherForecastPort == null)
+                throw new ArgumentNullException(@"IWeatherReaderPort");
+
             _weatherForecastPort = weatherForecastPort;
+            _tempratureConverter = tempretureConverter;
+            _smsSenderPort = smsSenderPort;
         }
 
         public async Task<string> GetTodayWeather()
         {
-            if (_weatherForecastPort == null)
+            try
+            {
+                int fahrenheit = _weatherForecastPort.GetWeather();
+                return $"دمای هوای امروز {FahrenheitToCelsius(fahrenheit)} درجه است";
+            }
+            catch (Exception)
+            {
                 throw new WeatherReaderServiceUnavailableException("سرویس در دسترس نمی باشد");
+            }
 
-            int firhenheit = _weatherForecastPort.GetWeather();
-
-            return $"دمای هوای امروز {FarhenheitToCelcius(firhenheit)} درجه است";
         }
 
-        private int FarhenheitToCelcius(int firhenheit)
+        public void SendWeatherStatusTo(string @from)
         {
-            return (firhenheit - 32) * 5 / 9;
+            //TODO
+
+            var fahrenheit = _weatherForecastPort.GetWeather();
+            var message = $"دمای هوای امروز {FahrenheitToCelsius(fahrenheit)} درجه است";
+
+            _smsSenderPort.SendSms(to: @from, message: message);
+        }
+
+        private int FahrenheitToCelsius(int fahrenheit)
+        {
+            return _tempratureConverter.ConvertFahrenheitToCelsius(fahrenheit);
+
         }
     }
 }
