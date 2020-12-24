@@ -1,10 +1,10 @@
 using System;
 
-namespace CalculatorSample
+namespace SimpleCalculator
 {
     public class Calculator : IDisposable
     {
-        public int Add(int augend, int addend)
+        public int Sum(int augend, int addend)
         {
             return augend + addend;
         }
