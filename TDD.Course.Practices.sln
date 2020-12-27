@@ -37,17 +37,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DriverAdapters", "DriverAda
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleAdapter", "ConsoleAdapter", "{54D8DACA-A144-43DD-9FAF-8CE8773FD516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForeCast.ConsoleAdapter", "CodeKata\PortsAndAdapters\DriverAdapters\ConsoleAdapter\WeatherForeCast.ConsoleAdapter\WeatherForeCast.ConsoleAdapter.csproj", "{479BA396-DA41-473C-8084-7BAF55EBCB8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForeCast.ConsoleAdapter", "CodeKata\PortsAndAdapters\DriverAdapters\ConsoleAdapter\WeatherForeCast.ConsoleAdapter\WeatherForeCast.ConsoleAdapter.csproj", "{479BA396-DA41-473C-8084-7BAF55EBCB8C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmsAdapter", "SmsAdapter", "{0887CE1E-DAD5-4888-B91E-2B4DA6E80E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast.SmsAdapter", "CodeKata\PortsAndAdapters\DriverAdapters\SmsAdapter\WeatherForecast.SmsAdapter\WeatherForecast.SmsAdapter.csproj", "{6FF4187E-6295-400D-88CF-4012662960CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast.SmsAdapter", "CodeKata\PortsAndAdapters\DriverAdapters\SmsAdapter\WeatherForecast.SmsAdapter\WeatherForecast.SmsAdapter.csproj", "{6FF4187E-6295-400D-88CF-4012662960CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DrivenAdapters", "DrivenAdapters", "{0FB6C49F-F326-4671-BA06-3082C05EC4F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmsAdapter", "SmsAdapter", "{65BED027-4D0E-4323-9C06-B26138F0E378}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecast.SmsDrivenAdapter", "CodeKata\PortsAndAdapters\DrivenAdapters\SmsAdapter\WeatherForecast.SmsDrivenAdapter\WeatherForecast.SmsDrivenAdapter.csproj", "{DC3C5723-152D-485A-A19C-556B04DB2B4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast.SmsDrivenAdapter", "CodeKata\PortsAndAdapters\DrivenAdapters\SmsAdapter\WeatherForecast.SmsDrivenAdapter\WeatherForecast.SmsDrivenAdapter.csproj", "{DC3C5723-152D-485A-A19C-556B04DB2B4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GoldInvestment", "GoldInvestment", "{59DDF36F-D9AB-4A1B-BF52-AACB55EB8338}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{691E1403-1D5F-42E0-B230-CC5A6DC4EAE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,6 +130,7 @@ Global
 		{0FB6C49F-F326-4671-BA06-3082C05EC4F0} = {7DD2135D-E221-4B57-8F59-3BF9A23FA243}
 		{65BED027-4D0E-4323-9C06-B26138F0E378} = {0FB6C49F-F326-4671-BA06-3082C05EC4F0}
 		{DC3C5723-152D-485A-A19C-556B04DB2B4F} = {65BED027-4D0E-4323-9C06-B26138F0E378}
+		{691E1403-1D5F-42E0-B230-CC5A6DC4EAE0} = {59DDF36F-D9AB-4A1B-BF52-AACB55EB8338}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EC3A930-4BC6-4E46-BAC9-524DB962BF35}

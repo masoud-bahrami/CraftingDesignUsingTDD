@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AcceptanceTests", "AcceptanceTests", "{43750BE7-DAA9-432D-B1B7-5F6344DB6C07}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldInvestment.AcceptanceTests", "AcceptanceTests\GoldInvetment.AcceptanceTests\GoldInvestment.AcceptanceTests.csproj", "{4901F260-9F64-46B3-A3DB-7C8F61C31EA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hexagonal", "Hexagonal", "{EBBE73B3-6B8E-478C-BB92-08F5C9820D1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E11B3F11-1B92-46FC-9F23-471AF8CC41A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldInvestment.ApplicationService", "src\ApplicationService\GoldInvestment.ApplicationService.csproj", "{9EB653B2-5A36-4465-9E26-467A83B81582}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldInvestment.Infrastructure.UnitTests", "src\UnitTests\GoldInvestment.Infrastructure.UnitTests\GoldInvestment.Infrastructure.UnitTests.csproj", "{AB979DCD-D276-4505-BD36-312DF8250D77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4901F260-9F64-46B3-A3DB-7C8F61C31EA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4901F260-9F64-46B3-A3DB-7C8F61C31EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4901F260-9F64-46B3-A3DB-7C8F61C31EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4901F260-9F64-46B3-A3DB-7C8F61C31EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EB653B2-5A36-4465-9E26-467A83B81582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EB653B2-5A36-4465-9E26-467A83B81582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EB653B2-5A36-4465-9E26-467A83B81582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EB653B2-5A36-4465-9E26-467A83B81582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB979DCD-D276-4505-BD36-312DF8250D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB979DCD-D276-4505-BD36-312DF8250D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB979DCD-D276-4505-BD36-312DF8250D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB979DCD-D276-4505-BD36-312DF8250D77}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4901F260-9F64-46B3-A3DB-7C8F61C31EA4} = {43750BE7-DAA9-432D-B1B7-5F6344DB6C07}
+		{EBBE73B3-6B8E-478C-BB92-08F5C9820D1B} = {E11B3F11-1B92-46FC-9F23-471AF8CC41A4}
+		{9EB653B2-5A36-4465-9E26-467A83B81582} = {EBBE73B3-6B8E-478C-BB92-08F5C9820D1B}
+		{AB979DCD-D276-4505-BD36-312DF8250D77} = {EBBE73B3-6B8E-478C-BB92-08F5C9820D1B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {567E2A3B-F921-41CA-957F-E2C934BD621E}
+	EndGlobalSection
+EndGlobal
