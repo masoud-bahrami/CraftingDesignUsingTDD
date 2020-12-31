@@ -18,9 +18,10 @@ namespace GoldInvestment.ApplicationService
         }
         public object Resolve(Type type)
         {
+            if(_components.ContainsKey(type))
             return _components[type]();
+            
+            throw new NotRegisteredDependencyException(type);
         }
-
-        
     }
 }

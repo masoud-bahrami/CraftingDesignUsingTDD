@@ -1,6 +1,5 @@
-using System;
 using GoldInvestment.ApplicationService;
-using GoldInvestment.ApplicationService.Contract;
+using GoldInvestment.Infrastructure.UnitTests.Helpers;
 using Xunit;
 
 namespace GoldInvestment.Infrastructure.UnitTests
@@ -11,12 +10,12 @@ namespace GoldInvestment.Infrastructure.UnitTests
         public void Dispatch_WhenAnCommandDispatch_CommandHandlerInvoked()
         {
             ISimpleContainer simpleContainer = new SimpleContainer();
-            simpleContainer.Register(typeof(FakeCommand), () => new FakeCommandHandler());
-
-            ICommandDispatcher sut = new CommandDispatcher(simpleContainer);
-
             var fakeCommandHandler = new FakeCommandHandler();
 
+            simpleContainer.Register(typeof(FakeCommand), () => fakeCommandHandler);
+
+            ICommandDispatcher sut = new CommandDispatcher(simpleContainer);
+                        
             ICommand fakeCommand = new FakeCommand();
             sut.Dispatch(fakeCommand);
 

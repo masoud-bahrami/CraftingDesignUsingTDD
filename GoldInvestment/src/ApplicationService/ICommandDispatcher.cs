@@ -18,12 +18,12 @@ namespace GoldInvestment.ApplicationService
 
         public void Dispatch(ICommand command)
         {
-            var commandHandler =  simpleContainer.Resolve(command.GetType());
+            var commandHandler = simpleContainer.Resolve(command.GetType());
 
             var methods = commandHandler.GetType().GetMethods();
             var handleMethod = methods.FirstOrDefault(p => p.Name == "Handle");
 
-            handleMethod.Invoke(commandHandler, new object[] {command});
+            handleMethod.Invoke(commandHandler, new object[] { command });
         }
     }
 }

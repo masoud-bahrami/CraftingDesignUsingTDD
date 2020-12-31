@@ -2,11 +2,11 @@ using System;
 
 namespace GoldInvestment.ApplicationService.Contract
 {
-    public class CreateOncePriceCommand : ICommand
+    public class CreateOuncePriceCommand : ICommand
     {
         public int Dollar { get; }
 
-        public CreateOncePriceCommand(int dollar)
+        public CreateOuncePriceCommand(int dollar)
         {
             Dollar = dollar;
         }

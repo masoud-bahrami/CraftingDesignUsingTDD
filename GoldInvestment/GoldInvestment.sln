@@ -13,7 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E11B3F11-1B9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldInvestment.ApplicationService", "src\ApplicationService\GoldInvestment.ApplicationService.csproj", "{9EB653B2-5A36-4465-9E26-467A83B81582}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldInvestment.Infrastructure.UnitTests", "src\UnitTests\GoldInvestment.Infrastructure.UnitTests\GoldInvestment.Infrastructure.UnitTests.csproj", "{AB979DCD-D276-4505-BD36-312DF8250D77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoldInvestment.Infrastructure.UnitTests", "src\UnitTests\GoldInvestment.Infrastructure.UnitTests\GoldInvestment.Infrastructure.UnitTests.csproj", "{AB979DCD-D276-4505-BD36-312DF8250D77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DrivenSide", "DrivenSide", "{F0F8D282-8A9B-4896-9D77-BE4B5CBB8D41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RepositoryAdapter", "RepositoryAdapter", "{9646D693-8D73-43A0-8F13-14CEE3387397}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldInvestment.Adapters.Repository", "src\DrivenSide\RepositoryAdapter\GoldInvestment.Adapters.Repository\GoldInvestment.Adapters.Repository.csproj", "{1DDA3EFE-F380-4106-BBB5-445FD58DD1D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,10 @@ Global
 		{AB979DCD-D276-4505-BD36-312DF8250D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB979DCD-D276-4505-BD36-312DF8250D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB979DCD-D276-4505-BD36-312DF8250D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DDA3EFE-F380-4106-BBB5-445FD58DD1D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DDA3EFE-F380-4106-BBB5-445FD58DD1D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DDA3EFE-F380-4106-BBB5-445FD58DD1D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DDA3EFE-F380-4106-BBB5-445FD58DD1D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +52,9 @@ Global
 		{EBBE73B3-6B8E-478C-BB92-08F5C9820D1B} = {E11B3F11-1B92-46FC-9F23-471AF8CC41A4}
 		{9EB653B2-5A36-4465-9E26-467A83B81582} = {EBBE73B3-6B8E-478C-BB92-08F5C9820D1B}
 		{AB979DCD-D276-4505-BD36-312DF8250D77} = {EBBE73B3-6B8E-478C-BB92-08F5C9820D1B}
+		{F0F8D282-8A9B-4896-9D77-BE4B5CBB8D41} = {E11B3F11-1B92-46FC-9F23-471AF8CC41A4}
+		{9646D693-8D73-43A0-8F13-14CEE3387397} = {F0F8D282-8A9B-4896-9D77-BE4B5CBB8D41}
+		{1DDA3EFE-F380-4106-BBB5-445FD58DD1D1} = {9646D693-8D73-43A0-8F13-14CEE3387397}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {567E2A3B-F921-41CA-957F-E2C934BD621E}

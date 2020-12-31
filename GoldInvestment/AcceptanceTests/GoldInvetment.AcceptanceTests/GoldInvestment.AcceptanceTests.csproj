@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\ApplicationService\GoldInvestment.ApplicationService.csproj" />
+    <ProjectReference Include="..\..\src\DrivenSide\RepositoryAdapter\GoldInvestment.Adapters.Repository\GoldInvestment.Adapters.Repository.csproj" />
   </ItemGroup>
 
 </Project>
