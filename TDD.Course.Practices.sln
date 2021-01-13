@@ -53,6 +53,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GoldInvestment", "GoldInves
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{691E1403-1D5F-42E0-B230-CC5A6DC4EAE0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreenBarPatterns", "GreenBarPatterns\GreenBarPatterns.csproj", "{7C4D850E-B604-4FCF-BCBE-1A3630A69C42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{DC3C5723-152D-485A-A19C-556B04DB2B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC3C5723-152D-485A-A19C-556B04DB2B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC3C5723-152D-485A-A19C-556B04DB2B4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C4D850E-B604-4FCF-BCBE-1A3630A69C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C4D850E-B604-4FCF-BCBE-1A3630A69C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C4D850E-B604-4FCF-BCBE-1A3630A69C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C4D850E-B604-4FCF-BCBE-1A3630A69C42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
