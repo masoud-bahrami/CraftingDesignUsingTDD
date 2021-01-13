@@ -1,7 +1,7 @@
-using GoldInvestment.Adapters.Repository;
+using GoldInvestment.AcceptanceTests.TestSpecificHelpers;
 using GoldInvestment.ApplicationService;
 using GoldInvestment.ApplicationService.Contract;
-using GoldInvestment.ApplicationService.Handers;
+using GoldInvestment.ApplicationService.Handlers;
 using GoldInvestment.ApplicationService.Repository;
 using Xunit;
 
@@ -22,7 +22,7 @@ namespace GoldInvestment.AcceptanceTests
             ISimpleContainer simpleContainer = new SimpleContainer();
 
             //Required Interface
-            IDollarToRialChangeRateRepository repo = new FakeRepository();
+            IDollarToRialChangeRateRepository repo = new DollarToRialChangeRateFakeRepository();
 
             //component Lifetime Management
 
@@ -31,13 +31,15 @@ namespace GoldInvestment.AcceptanceTests
             ICommandDispatcher commandDispatcher = new CommandDispatcher(simpleContainer);
             commandDispatcher.Dispatch(createDollarRateCommand);
 
+            IOunceRateRepository ounceRateRepository = new OunceRateFakeRepository();
+            simpleContainer.Register(typeof(CreateOuncePriceCommand) , ()=>new CreateOuncePriceCommandHandler(ounceRateRepository));
             //Ounce
             CreateOuncePriceCommand createOncePriceCommand = new CreateOuncePriceCommand(dollar: 1);
             commandDispatcher.Dispatch(createOncePriceCommand);
             
             //Gold
 
-            IQueryDispatcher queryDispatcher = null;
+            IQueryDispatcher queryDispatcher = new QueryDispatcher(simpleContainer);
 
             GetCurrentPriceOfGoldQuery getCurrentPriceOfGoldQuery = new GetCurrentPriceOfGoldQuery();
             decimal currentPriceOfGold = queryDispatcher.RunQuery<GetCurrentPriceOfGoldQuery, decimal>(getCurrentPriceOfGoldQuery);
