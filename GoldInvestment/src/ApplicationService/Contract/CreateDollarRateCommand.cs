@@ -4,9 +4,9 @@ namespace GoldInvestment.ApplicationService.Contract
 {
     public class CreateDollarRateCommand : ICommand
     {
-        public int Rate { get; }
+        public decimal Rate { get; }
 
-        public CreateDollarRateCommand(int rate)
+        public CreateDollarRateCommand(decimal rate)
         {
             Rate = rate;
         }

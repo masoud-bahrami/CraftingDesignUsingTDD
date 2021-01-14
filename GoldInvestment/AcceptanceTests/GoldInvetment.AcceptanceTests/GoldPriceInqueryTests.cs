@@ -1,50 +1,38 @@
+using System.Runtime.InteropServices;
+using GoldInvestment.AcceptanceTests.Drivers;
 using GoldInvestment.AcceptanceTests.TestSpecificHelpers;
 using GoldInvestment.ApplicationService;
 using GoldInvestment.ApplicationService.Contract;
 using GoldInvestment.ApplicationService.Handlers;
+using GoldInvestment.ApplicationService.QueryHandlers;
 using GoldInvestment.ApplicationService.Repository;
 using Xunit;
 
 namespace GoldInvestment.AcceptanceTests
 {
-    public class GoldPriceInqueryTests
+    public class GoldPriceInquiryTests
     {
-
-
-        //WebService >> DollarToRial Change rate 
-        //IDollarToRialWebService
-        // Event 
+        
         [Fact]
-        public void TestXYZ()
+        public async void CurrentPriceOfGold()
         {
             //Dollar
-            CreateDollarRateCommand createDollarRateCommand = new CreateDollarRateCommand(rate: 420000);
-            ISimpleContainer simpleContainer = new SimpleContainer();
-
-            //Required Interface
-            IDollarToRialChangeRateRepository repo = new DollarToRialChangeRateFakeRepository();
-
-            //component Lifetime Management
-
-            simpleContainer.Register(typeof(CreateDollarRateCommand), () => new CreateDollarRateCommandHandler(repo));
+            const decimal dollarRate = 28000;
+            const decimal ouncePrice = 1850;
+            const decimal expectedCurrentGoldPrice = 986.4712514092446448703494927m;
             
-            ICommandDispatcher commandDispatcher = new CommandDispatcher(simpleContainer);
-            commandDispatcher.Dispatch(createDollarRateCommand);
+            var createDollarRateCommand = new CreateDollarRateCommand(rate: dollarRate);
+            var createOncePriceCommand = new CreateOuncePriceCommand(dollar: ouncePrice);
 
-            IOunceRateRepository ounceRateRepository = new OunceRateFakeRepository();
-            simpleContainer.Register(typeof(CreateOuncePriceCommand) , ()=>new CreateOuncePriceCommandHandler(ounceRateRepository));
-            //Ounce
-            CreateOuncePriceCommand createOncePriceCommand = new CreateOuncePriceCommand(dollar: 1);
-            commandDispatcher.Dispatch(createOncePriceCommand);
+            IGoldInvestmentApplicationDriver applicationDriver = new GoldInvestmentApplicationApiDriver();
+
+            await applicationDriver.Bootstrap();
+            await applicationDriver.CreateDollarPrice(createDollarRateCommand);
+            await applicationDriver.CreateOuncePrice(createOncePriceCommand);
+
+            decimal currentPriceOfGold =await applicationDriver.GetCurrentGoldPrice();
             
-            //Gold
-
-            IQueryDispatcher queryDispatcher = new QueryDispatcher(simpleContainer);
-
-            GetCurrentPriceOfGoldQuery getCurrentPriceOfGoldQuery = new GetCurrentPriceOfGoldQuery();
-            decimal currentPriceOfGold = queryDispatcher.RunQuery<GetCurrentPriceOfGoldQuery, decimal>(getCurrentPriceOfGoldQuery);
-            //Assert
-            Assert.Equal(12000000, currentPriceOfGold);
+            Assert.Equal(expectedCurrentGoldPrice, currentPriceOfGold);
         }
     }
 }
